@@ -1,0 +1,79 @@
+/*
+ * Every rule only applies while content.js has set
+ * <html data-shorts-blocker="on">, so toggling the attribute
+ * turns blocking on/off instantly without reloading the page.
+ *
+ * :is() uses a "forgiving" selector list: if YouTube removes an element
+ * or a browser doesn't understand one selector, the rest still work.
+ * When YouTube changes its layout, this is the file to update.
+ */
+
+/* ---------- Home feed & Subscriptions ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+  ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2),
+  ytd-rich-shelf-renderer[is-shorts],
+  ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+  ytd-grid-video-renderer:has(a[href^="/shorts/"])
+) {
+  display: none !important;
+}
+
+/* ---------- Search results ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytd-reel-shelf-renderer,
+  grid-shelf-view-model:has(ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2, a[href^="/shorts/"]),
+  ytd-video-renderer:has(a[href^="/shorts/"])
+) {
+  display: none !important;
+}
+
+/* ---------- Watch page (recommendations sidebar) ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+  yt-lockup-view-model:has(a[href^="/shorts/"]),
+  ytd-item-section-renderer ytm-shorts-lockup-view-model,
+  ytd-item-section-renderer ytm-shorts-lockup-view-model-v2
+) {
+  display: none !important;
+}
+
+/* ---------- Left navigation (full + mini guide) ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytd-guide-entry-renderer:has(a[title="Shorts"], a[href="/shorts/"]),
+  ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+  ytd-mini-guide-entry-renderer:has(a[title="Shorts"], a[href="/shorts/"])
+) {
+  display: none !important;
+}
+
+/* ---------- Channel pages ---------- */
+html[data-shorts-blocker="on"] :is(
+  yt-tab-shape[tab-title="Shorts"]
+) {
+  display: none !important;
+}
+
+/* ---------- Notifications ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytd-notification-renderer:has(a[href^="/shorts/"])
+) {
+  display: none !important;
+}
+
+/* ---------- Mobile site (m.youtube.com) ---------- */
+html[data-shorts-blocker="on"] :is(
+  ytm-reel-shelf-renderer,
+  ytm-rich-section-renderer:has(ytm-reel-shelf-renderer, ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2),
+  ytm-rich-item-renderer:has(a[href^="/shorts/"]),
+  ytm-video-with-context-renderer:has(a[href^="/shorts/"]),
+  ytm-compact-video-renderer:has(a[href^="/shorts/"]),
+  ytm-pivot-bar-item-renderer:has(.pivot-shorts)
+) {
+  display: none !important;
+}
+
+/* ---------- Things CSS can't match by text (marked by content.js) ---------- */
+html[data-shorts-blocker="on"] [data-shorts-blocker-hide] {
+  display: none !important;
+}

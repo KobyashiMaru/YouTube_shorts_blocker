@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shorts Blocker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/on-48.png" alt="" width="28" height="28" id="logo">
+    <div>
+      <h1>Shorts Blocker</h1>
+      <p id="status" class="muted">Shorts are hidden</p>
+    </div>
+  </header>
+
+  <label class="row">
+    <span>
+      <strong>Block Shorts</strong>
+      <small class="muted">Search, home feed, subscriptions, sidebar, channels, watch page</small>
+    </span>
+    <input type="checkbox" id="enabled" class="switch">
+  </label>
+
+  <label class="row" id="redirect-row">
+    <span>
+      <strong>Play Shorts as normal videos</strong>
+      <small class="muted">Opening a /shorts/ link loads the regular player instead</small>
+    </span>
+    <input type="checkbox" id="redirect" class="switch">
+  </label>
+
+  <footer class="muted">
+    Shortcut: <kbd id="shortcut">not set</kbd>
+    · <a href="#" id="edit-shortcut">change</a>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
